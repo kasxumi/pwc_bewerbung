@@ -5,20 +5,57 @@
         <script src="node_modules/vue/dist/vue.js"></script>
     </head>
     <body>
-        <div id="app" v-for="gamestar_rss.items">
-            <h1>Titel</h1>
-            <p>Datum</p>
-            <span>
-                <img/>
-                <div>
-                  <p>Beschreibung</p>
-                  <link title="link">
-                </div>
-            </span>
+        <div id="app">
+            <div v-for="item in gamestar_rss.items">
+            <!-- original version
+                <h1>{{item.title}}</h1>
+                <p>{{item.pubDate}}</p>
+                <p v-html="item.content"></p>
+                <a v-bind:href="item.link">Read More</a>
+                <br>
+            -->
+                <h1 class="title">{{item.title}}</h1>
+                <p class="dates">By {{item.creator}} on {{item.pubDate}}</p>
+                <a v-bind:href="item.link" v-if="containsKey(item, 'enclosure')">
+                    <img class="image" v-bind:src="item.enclosure.url"/>
+                </a>
+                <p class="content">{{item.contentSnippet}}</p>
+            </div>
         </div>
+        <style>
+            #app{
+                background-color: rgb(255, 163, 199);
+            }
+            .title, p, a{
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            }
+            a{
+                color: darkmagenta;
+            }
+            .title{
+                text-align: center;
+                font-size: 500%;
+            }
+            .image{
+                width: 90%;
+                padding-left: 5%;
+            }
+            .dates{
+                padding-left: 5%;
+            }
+            .content{
+                padding-left: 5%;
+                font-size: 200%;
+            }
+        </style>
         <script>
             var app = new Vue({
               el: '#app',
+              methods:{
+                containsKey(obj, key){
+                    return Object.keys(obj).includes(key);
+                }
+              },
               data: {
                 gamestar_rss :  {
     "items": [
