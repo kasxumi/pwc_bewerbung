@@ -3,6 +3,8 @@
     <head>
         <title>Pwc Bewerbung</title>
         <script src="node_modules/vue/dist/vue.js"></script>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
     </head>
     <body>
         <div id="app">
@@ -20,6 +22,7 @@
                     <img class="image" v-bind:src="item.enclosure.url"/>
                 </a>
                 <p class="content">{{item.contentSnippet}}</p>
+                <h2 class="click">Willst du mehr erfahren? Klick auf das Bild!</h2>
             </div>
         </div>
         <style>
@@ -27,14 +30,14 @@
                 background-color: rgb(255, 163, 199);
             }
             .title, p, a{
-                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                font-family: 'Roboto', sans-serif;
             }
             a{
                 color: darkmagenta;
             }
             .title{
                 text-align: center;
-                font-size: 500%;
+                font-size: 400%;
             }
             .image{
                 width: 90%;
@@ -44,8 +47,11 @@
                 padding-left: 5%;
             }
             .content{
-                padding-left: 5%;
+                padding-left: 4.5%;
                 font-size: 200%;
+            }
+            .click{
+                padding-left: 5%;
             }
         </style>
         <script>
